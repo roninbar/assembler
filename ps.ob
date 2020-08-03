@@ -1,0 +1,5 @@
+directive("entry") labelref("LIST")
+directive("extern") labelref("W")
+labeldef("MAIN") instruction("add") register(3) comma() labelref("LIST")
+labeldef("LOOP") instruction("prn") number(48)
+instruction("lea") labelref("W") comma() register(6)
