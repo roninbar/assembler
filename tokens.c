@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+
 void directive(const char *name) {
 	printf("directive(\"%s\")", name);
 }

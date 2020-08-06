@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <errno.h>
+#include "gettoken.h"
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
 	// for each input file (*.as)
 	//   for each line in the file
 	//     while (not <eol>)
@@ -18,10 +19,37 @@ int main(int argc, char* argv[]) {
 			exit(ENOENT);
 		}
 		else {
+			Token token;
+			char *p = line;
 			while (fgets(line, 1000, pFile)) {
-				printf("%s", line);
+				p = line;
+				while (*p != '\0') {
+					p += gettoken(p, &token) + 1L;
+					printf("(%s) ", token.name);
+				}
+				printf("<eol>\n");
 			}
 			fclose(pFile);
 		}
 	}
 }
+
+//char line[MAXLINELEN];
+//int i = 0;
+//int input = 0;
+//while ((input = getchar()) != EOF) {
+//	Token token;
+//	i += gettoken(&line[i], &token);
+//	switch (token.type) {
+//	case DIRECTIVE:
+//		directive(token.name);
+//		break;
+//	case LABEL:
+//		label(token.name);
+//		break;
+//	case INSTRUCTION:
+//	case REGISTER:
+//	case NUMBER:
+//	case COMMA:
+//	}
+//}
