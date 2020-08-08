@@ -20,14 +20,13 @@ int main(int argc, char *argv[]) {
 		}
 		else {
 			Token token;
-			char *p = line;
 			while (fgets(line, 1000, pFile)) {
-				p = line;
-				while (*p != '\0') {
-					p += gettoken(p, &token) + 1L;
-					printf("(%s) ", token.name);
+				int tokenLength;
+				printf("( ");
+				for (char *p = line; 0 < (tokenLength = gettoken(p, &token)); p += tokenLength) {
+					printf("(%s \"%s\") ", token._typename, token.name);
 				}
-				printf("<eol>\n");
+				printf(")\n");
 			}
 			fclose(pFile);
 		}

@@ -5,7 +5,8 @@
 
 int gettoken(const char *input, Token *token)
 {
-	int full;
-	sscanf(input, "%s%n", token->name,&full);
-	return full;//strlen(token->name)
+	int nchars, filled;
+	settokentype(token, UNIDENTIFIED);
+	filled = sscanf(input, " %[^ \t\n,]%n", token->name, &nchars);
+	return filled ? nchars : 0;
 }

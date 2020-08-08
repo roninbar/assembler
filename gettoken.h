@@ -1,9 +1,10 @@
 #pragma once
 
-#define MAXNAMELEN 1000
+#define MAXNAMELEN 31
+#define MAXTYPELEN 20
 
 typedef enum {
-	_ANYWORD, // development only!!!
+	UNIDENTIFIED, // development only!!!
 	DIRECTIVE,
 	LABELDEF,
 	LABELREF,
@@ -13,11 +14,14 @@ typedef enum {
 	COMMA
 } TokenType;
 
+#define settokentype(ptok, typ) ((ptok)->type = (typ), strcpy((ptok)->_typename, #typ))
+
 typedef struct {
 	TokenType type;
+	char _typename[MAXTYPELEN];
 	union
 	{
-		char name[MAXNAMELEN];
+		char name[MAXNAMELEN + 1];
 		int value;
 		int regnum;
 	};
