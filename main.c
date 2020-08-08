@@ -24,7 +24,7 @@ int main(int argc, char *argv[]) {
 				int tokenLength;
 				printf("( ");
 				for (char *p = line; 0 < (tokenLength = gettoken(p, &token)); p += tokenLength) {
-					printf("(%s \"%s\") ", token._typename, token.name);
+					printf("(%s \'%s\') ", token._typename, token.name);
 				}
 				printf(")\n");
 			}
