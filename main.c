@@ -3,53 +3,70 @@
 #include "gettoken.h"
 
 int main(int argc, char *argv[]) {
-	// for each input file (*.as)
-	//   for each line in the file
-	//     while (not <eol>)
-	//       get the next token
-	int i;
-	for (i = 1; i < argc; i++)
-	{
-		FILE *pFile;
-		char fileName[100];
-		char line[1000];
-		sprintf(fileName, "%s.as", argv[i]);
-		pFile = fopen(fileName, "r");
-		if (pFile == NULL) {
-			exit(ENOENT);
-		}
-		else {
-			Token token;
-			char *p = line;
-			while (fgets(line, 1000, pFile)) {
-				p = line;
-				while (*p != '\0') {
-					p += gettoken(p, &token) + 1L;
-					printf("(%s) ", token.name);
-				}
-				printf("<eol>\n");
-			}
-			fclose(pFile);
-		}
-	}
+    for (int i = 1; i < argc; i++) {
+        FILE *pFile;
+        char fileName[100];
+
+        sprintf(fileName, "%s.as", argv[i]);
+        pFile = fopen(fileName, "r");
+        if (pFile == NULL) {
+            exit(ENOENT);
+        }
+        else {
+            int linenum = 0;
+            char line[1000];
+            
+            while (fgets(line, 1000, pFile)) {
+                Token token;
+                int tokenLength;
+
+                printf("%03d: ", ++linenum);
+
+                if (line[0] == ';') {
+                    printf("%s", line);
+                    continue;
+                }
+
+                printf("( ");
+                for (char *p = line; 0 < (tokenLength = gettoken(p, &token)); p += tokenLength) {
+                    switch (token.type) {
+                    case DIRECTIVE:
+						printf("(%s '%s') ", token._typename, token.string);
+                        break;
+                    case LABELDEF:
+						printf("(%s '%s') ", token._typename, token.string);
+                        break;
+                    case LABELREF:
+						printf("(%s '%s') ", token._typename, token.string);
+                        break;
+                    case INSTRUCTION:
+						printf("(%s '%s') ", token._typename, token.string);
+                        break;
+                    case IMMEDIATE:
+                        printf("(%s %d) ", token._typename, token.number);
+                        break;
+                    case REGISTER:
+						printf("(%s %d) ", token._typename, token.number);
+                        break;
+                    case NUMBER:
+						printf("(%s %d) ", token._typename, token.number);
+                        break;
+                    case STRING:
+                        printf("(%s \"%s\") ", token._typename, token.string);
+                        break;
+                    case COMMA:
+						printf("(%s) ", token._typename);
+                        break;
+                    case UNIDENTIFIED:
+                    default:
+                        printf("(%s '%s') ", token._typename, token.string);
+                        break;
+                    }
+                }
+                printf(")\n");
+            }
+            fclose(pFile);
+        }
+    }
 }
 
-//char line[MAXLINELEN];
-//int i = 0;
-//int input = 0;
-//while ((input = getchar()) != EOF) {
-//	Token token;
-//	i += gettoken(&line[i], &token);
-//	switch (token.type) {
-//	case DIRECTIVE:
-//		directive(token.name);
-//		break;
-//	case LABEL:
-//		label(token.name);
-//		break;
-//	case INSTRUCTION:
-//	case REGISTER:
-//	case NUMBER:
-//	case COMMA:
-//	}
-//}

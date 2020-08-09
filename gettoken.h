@@ -1,25 +1,29 @@
 #pragma once
 
-#define MAXNAMELEN 1000
+#define MAXSTRINGLEN 80
+#define MAXTYPELEN 20
 
 typedef enum {
-	_ANYWORD, // development only!!!
+	UNIDENTIFIED, // development only!!!
 	DIRECTIVE,
 	LABELDEF,
 	LABELREF,
 	INSTRUCTION,
 	REGISTER,
+	IMMEDIATE,
+	RELATIVE,
 	NUMBER,
-	COMMA
+	STRING,
+	COMMA,
 } TokenType;
 
 typedef struct {
 	TokenType type;
+	char _typename[MAXTYPELEN];
 	union
 	{
-		char name[MAXNAMELEN];
-		int value;
-		int regnum;
+		char string[MAXSTRINGLEN + 1];
+		int number;
 	};
 } Token;
 
