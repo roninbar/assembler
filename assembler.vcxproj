@@ -105,7 +105,7 @@
   <ItemGroup>
     <ClCompile Include="gettoken.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="tokens.c" />
+    <ClCompile Include="symbol.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gettoken.h" />

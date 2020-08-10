@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <errno.h>
+#include <string.h>
 #include "gettoken.h"
 #include "symbol.h"
 
@@ -61,6 +62,23 @@ int main(int argc, char *argv[]) {
             char line[1000];
             
             while (fgets(line, 1000, pFile)) {
+
+                Token token;
+                const char *p = line;
+                p += gettoken(p, &token);
+
+                if (token.type == LABELDEF) {
+                    Token token2;
+                    gettoken(p, &token2);
+                    if (token2.type == INSTRUCTION) {
+                        // TODO Fill in label address
+                        symbolInsert(token.string, 0, ATTR_CODE);
+                    }
+                    else if (token2.type == DIRECTIVE && 0 == strcmp("data", token2.string)) {
+                        // TODO Fill in label address
+                        symbolInsert(token.string, 0, ATTR_DATA);
+                    }
+                }
 
                 printf("%03d: ", ++linenum);
 
