@@ -1,11 +1,18 @@
 #pragma once
 
 typedef enum {
-	ATTR_CODE,
-	ATTR_DATA,
-	ATTR_ENTRY,
-	ATTR_EXTERNAL
+	ATTR_CODE = 1,
+	ATTR_DATA = 2,
+	ATTR_ENTRY = 4,
+	ATTR_EXTERNAL = 8
 } SymbolAttributes;
+struct Node *head;
+ struct Node {
+	char *name;
+	int value;
+	SymbolAttributes attr;
+    struct Node* link;
+};
 
 void symbolInsert(const char *name, int value, SymbolAttributes attr);
 void symbolUpdate(const char *name, int value, SymbolAttributes attr);
