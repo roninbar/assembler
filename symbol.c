@@ -6,6 +6,7 @@ void symbolInsert(const char *name, int value, SymbolAttributes attr)
 	if (!temp) {
 		printf("the memory is full");
 		exit(0);
+		
 	}
 	temp->name = name;
 	temp->value = value;

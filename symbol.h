@@ -11,7 +11,7 @@ struct Node *head;
 	char *name;
 	int value;
 	SymbolAttributes attr;
-    struct Node* link;
+    struct Node *link;
 };
 
 void symbolInsert(const char *name, int value, SymbolAttributes attr);
