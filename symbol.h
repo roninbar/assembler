@@ -6,12 +6,14 @@ typedef enum {
 	ATTR_ENTRY = 4,
 	ATTR_EXTERNAL = 8
 } SymbolAttributes;
-struct Node *head;
+
+typedef struct Node *Node;
+ Node *head;
  struct Node {
 	char *name;
 	int value;
 	SymbolAttributes attr;
-    struct Node *link;
+	 struct Node *link;
 };
 
 void symbolInsert(const char *name, int value, SymbolAttributes attr);
