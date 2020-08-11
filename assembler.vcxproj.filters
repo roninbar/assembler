@@ -18,15 +18,18 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tokens.c">
+    <ClCompile Include="gettoken.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="gettoken.c">
+    <ClCompile Include="symbol.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gettoken.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="symbol.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

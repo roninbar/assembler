@@ -105,10 +105,11 @@
   <ItemGroup>
     <ClCompile Include="gettoken.c" />
     <ClCompile Include="main.c" />
-    <ClCompile Include="tokens.c" />
+    <ClCompile Include="symbol.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gettoken.h" />
+    <ClInclude Include="symbol.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
