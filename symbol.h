@@ -1,4 +1,5 @@
 #pragma once
+#define MAX_NAME_LEN 31
 
 typedef enum {
 	ATTR_CODE = 1,
@@ -7,10 +8,10 @@ typedef enum {
 	ATTR_EXTERNAL = 8
 } SymbolAttributes;
 
-typedef struct Node *Node;
+typedef struct Node Node;
  Node *head;
  struct Node {
-	char *name;
+	char name[MAX_NAME_LEN+1];
 	int value;
 	SymbolAttributes attr;
 	 struct Node *link;
@@ -19,4 +20,5 @@ typedef struct Node *Node;
 void symbolInsert(const char *name, int value, SymbolAttributes attr);
 void symbolUpdate(const char *name, int value, SymbolAttributes attr);
 void symbolLookup(const char *name, int *value, SymbolAttributes *attr);
+void printSymbolTable();
 
