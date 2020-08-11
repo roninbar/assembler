@@ -89,6 +89,8 @@ int main(int argc, char *argv[]) {
 
                 printTokenList(line);
             }
+            printf("------ Symbols ------\n");
+            printSymbolTable();
             fclose(pFile);
         }
     }
