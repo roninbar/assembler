@@ -40,14 +40,14 @@ int gettoken(const char *input, Token *token)
 		index = l = 0;
 		while (index < 16) {
 
-			if (input[l] == instruct[index][l]) {
+			if ((*token).string[l] == instruct[index][l]) {
 				l++;
 				if (l == nchars) {
 					settokentype(token, INSTRUCTION);
 					return nchars;
 				}
 			}
-			if (input[l] != instruct[index][l]) {
+			else if (input[l] != instruct[index][l]) {
 				index++;
 				l = 0;
 			}

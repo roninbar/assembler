@@ -40,7 +40,7 @@ void printSymbolTable()
 {
 	Node *temp1=head;
 	while (temp1) {
-		printf("%s%d%d\n",temp1->name, temp1->value, temp1->attr);
+		printf("(%s %d %d)\t",temp1->name, temp1->value, temp1->attr);
 		temp1 = temp1->link;
 
 	}
