@@ -43,5 +43,5 @@
 #### 2nd Milestone
 
 ```scheme
-( (MAIN 0 CODE) (LOOP 0 CODE) (END 0 CODE) (STR 0 DATA) (LIST 0 DATA) (K 0 DATA) )
+( ('MAIN' 0 CODE) ('LOOP' 0 CODE) ('END' 0 CODE) ('STR' 0 DATA) ('LIST' 0 DATA) ('K' 0 DATA) )
 ```
