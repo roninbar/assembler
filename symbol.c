@@ -1,8 +1,12 @@
 #include "symbol.h"
+#include <stdio.h>
+
+
+
 
 void symbolInsert(const char *name, int value, SymbolAttributes attr)
 {
-	struct Node *temp= (Node*) malloc(sizeof(Node));
+	 struct Node *temp= (Node*) malloc(sizeof(Node));
 	if (!temp) {
 		printf("the memory is full");
 		exit(0);
@@ -10,7 +14,7 @@ void symbolInsert(const char *name, int value, SymbolAttributes attr)
 	}
 	temp->name = name;
 	temp->value = value;
-	temp->SymbolAttributes = attr;
+	temp->attr = attr;
 	temp->link=NULL;
 	if (!head)
 		head = temp;
